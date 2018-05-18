@@ -1,0 +1,20 @@
+buildscript {
+    ext {
+        jogl_version = '2.3.2'
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+apply plugin: "kotlin-platform-jvm"
+
+dependencies {
+    expectedBy project(":common")
+    compile "org.jetbrains.kotlin:kotlin-stdlib-common:$kotlin_version"
+    testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+}
+
+repositories {
+    jcenter()
+}

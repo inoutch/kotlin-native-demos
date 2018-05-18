@@ -1,0 +1,33 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://dl.bintray.com/jetbrains/kotlin-native-dependencies"
+        }
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-native-gradle-plugin:0.7"
+    }
+}
+
+apply plugin: "konan"
+
+konan.targets = ["linux", "wasm32"]
+
+konanArtifacts {
+    library("multilib", targets: ['wasm32', 'linux']) {
+        enableMultiplatform true
+
+        target('linux') {
+            srcFiles fileTree('linux/src/main/kotlin')
+        }
+        target('wasm32') {
+            srcFiles fileTree('wasm32/src/main/kotlin')
+        }
+    }
+
+}
+
+dependencies {
+    expectedBy project(":common")
+}

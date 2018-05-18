@@ -1,0 +1,2 @@
+rootProject.name = 'multilib'
+include ':common', ':native', ':jvm', ':test'
